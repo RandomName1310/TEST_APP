@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TEST_APP.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TEST_APP.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Title="TEST_APP">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="Pages.MainPage" />
+
+    <ShellContent
+        Title="SecondPage"
+        ContentTemplate="{DataTemplate local:SecondPage}"
+        Route="Pages.SecondPage" />
+
+    <ShellContent
+         Title="DescriptPage"
+         ContentTemplate="{DataTemplate local:DescriptPage}"
+         Route="Pages.DescriptPage" />
+
+</Shell>

@@ -1,0 +1,66 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TEST_APP.Pages.MainPage"
+             BackgroundColor="Black">
+
+    <!-- STYLES -->
+    <ContentPage.Resources>
+        <Style x:Key="GeneralButtonStyle" TargetType="Button">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="WidthRequest" Value="250"/>
+            <Setter Property="HeightRequest" Value="80"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Shadow">
+                <Setter.Value>
+                    <Shadow Brush="Gray" Offset="5,5" Radius="10" Opacity="0.4"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="TitleStyle">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="FontFamily" Value="Tagesschrift"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <!-- LAYOUT -->
+    <AbsoluteLayout>
+
+        <!-- IMAGEM TOP LEFT -->   
+        <!-- CENTRAL CONTENT OVERLAY -->
+        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
+              AbsoluteLayout.LayoutFlags="All"
+              VerticalOptions="FillAndExpand"
+              Padding="30">
+
+            <VerticalStackLayout Spacing="5" VerticalOptions="Center" HorizontalOptions="Center">
+                <Label Text="AMO CRIANÇA"
+                       Style="{StaticResource TitleStyle}"
+                       LineBreakMode="WordWrap"/>
+                <Label Text="app do voluntário"
+                       Style="{StaticResource TitleStyle}"
+                       LineBreakMode="WordWrap"/>
+                
+                <BoxView HeightRequest="50" Opacity="0"/> <!--BLANK SPACE-->
+
+
+                <Button Text="Ver Evento"
+                        Style="{StaticResource GeneralButtonStyle}"
+                        Clicked="NavigateToSecondPage"
+                        Background="Green"/>
+                
+                <BoxView HeightRequest="10" Opacity="0"/> <!--BLANK SPACE-->
+                
+                <Button Text="Gerenciar Evento"
+                        Style="{StaticResource GeneralButtonStyle}"
+                        Clicked="NavigateToSecondPage"
+                        Background="Red"/>
+            </VerticalStackLayout>
+        </Grid>
+    </AbsoluteLayout>
+</ContentPage>
