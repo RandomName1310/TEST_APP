@@ -12,6 +12,10 @@ namespace TEST_APP.Pages
         private async void NavigateToSecondPage(object sender, EventArgs e){
             await Navigation.PushAsync(new SecondPage());
         }
+        private async void NavigateToManagePage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ManagePage());
+        }
         protected override async void OnAppearing()
         {
             base.OnAppearing();

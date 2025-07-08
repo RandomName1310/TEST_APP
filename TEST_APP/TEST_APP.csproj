@@ -68,10 +68,16 @@
 	  <Compile Update="Pages\DescriptPage.xaml.cs">
 	    <DependentUpon>DescriptPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\ManagePage.xaml.cs">
+	    <DependentUpon>ManagePage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Pages\DescriptPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ManagePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SecondPage.xaml">

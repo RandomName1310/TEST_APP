@@ -4,9 +4,9 @@ using TEST_APP;
 
 namespace TEST_APP.Pages;
 
-public partial class ManagePage : ContentPage
+public partial class SecondPage : ContentPage
 {
-    public ManagePage()
+    public SecondPage()
     {
         InitializeComponent();
         LoadEvents();

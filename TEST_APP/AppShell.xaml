@@ -21,5 +21,10 @@
          Title="DescriptPage"
          ContentTemplate="{DataTemplate local:DescriptPage}"
          Route="Pages.DescriptPage" />
+    
+    <ShellContent
+         Title="ManagePage"
+         ContentTemplate="{DataTemplate local:ManagePage}"
+         Route="Pages.ManagePage" />
 
 </Shell>

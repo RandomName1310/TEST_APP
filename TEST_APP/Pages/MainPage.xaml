@@ -58,7 +58,7 @@
                 
                 <Button Text="Gerenciar Evento"
                         Style="{StaticResource GeneralButtonStyle}"
-                        Clicked="NavigateToSecondPage"
+                        Clicked="NavigateToManagePage"
                         Background="Red"/>
             </VerticalStackLayout>
         </Grid>
