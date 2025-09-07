@@ -4,11 +4,11 @@ using System.Diagnostics;
 using System.Xml.Linq;
 using Microsoft.Maui.Storage;
 
-namespace TEST_APP
+namespace TEST_APP.HelperClasses
 {
     public class XmlReaderService
     {
-        public async Task<string[,]> ReadXml(String Event)
+        public async Task<string[,]> ReadXml(string Event)
         {
             using var stream = await FileSystem.OpenAppPackageFileAsync(Event);
             using var reader = new StreamReader(stream);

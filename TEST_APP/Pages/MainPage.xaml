@@ -24,15 +24,11 @@
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="FontFamily" Value="Tagesschrift"/>
         </Style>
     </ContentPage.Resources>
 
     <!-- LAYOUT -->
     <AbsoluteLayout>
-
-        <!-- IMAGEM TOP LEFT -->   
-        <!-- CENTRAL CONTENT OVERLAY -->
         <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
               AbsoluteLayout.LayoutFlags="All"
               VerticalOptions="FillAndExpand"

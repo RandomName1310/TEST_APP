@@ -1,94 +1,47 @@
+using System.Data;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 using TEST_APP;
+using TEST_APP.HelperClasses;
+
 
 namespace TEST_APP.Pages;
 
-public partial class SecondPage : ContentPage
+public partial class ManagePage : ContentPage
 {
-    public SecondPage()
+    public ManagePage()
     {
         InitializeComponent();
-        LoadEvents();
     }
 
-    private async void LoadEvents()
+    protected override async void OnAppearing()
     {
-        var readerService = new XmlReaderService();
-        string[,] events = await readerService.ReadXml("Events.xml");
-
-        CreateEvents(events);
+        base.OnAppearing();
+        await ExecuteQuery("SELECT * FROM events");
     }
 
-    private void CreateEvents(string[,] events)
+    private async Task ExecuteQuery(string query)
     {
-        for(int i = 0; i < events.GetLength(0); i++)
+        var db = new DatabaseConnector();
+        var ev_manager = new EventManager(Resources, EventStackLayout, Navigation);
+        DataTable table = await db.ExecuteQueryAsync(query);
+
+        foreach (DataRow row in table.Rows)
         {
-            string Title = events[i, 0];
-            string Date = events[i, 1];
-            string BorderColor = events[i, 2];
+            var event_data = new EventManager.event_data
+            {
+                event_id = Convert.ToInt32(row["event_id"]),
+                name = row["name"].ToString(),
+                description = row["description"].ToString(),
+                date_time = row["date_time"].ToString(),
+                link = row["link"].ToString(),
+                number_limit = Convert.ToInt32(row["number_limit"]),
+                color = GetRandomColor().ToHex()
+            };
 
-            AddEvent(Title, Date, BorderColor);
+            ev_manager.add_event(event_data);
         }
     }
-
-    public void AddEvent(string M_Text, string D_Text, string BorderColor)
-    {
-        var mainLabel = new Label
-        {
-            Style = (Style)Resources["MainText"],
-            Text = M_Text,
-            HorizontalOptions = LayoutOptions.Start
-        };
-
-        var dateLabel = new Label
-        {
-            Style = (Style)Resources["DateText"],
-            Text = D_Text,
-            HorizontalOptions = LayoutOptions.Start,
-            VerticalOptions = LayoutOptions.End
-        };
-
-        var button = new Button
-        {
-            Style = (Style)Resources["GeneralButtonStyle"],
-            HorizontalOptions = LayoutOptions.End,
-            VerticalOptions = LayoutOptions.Start, // Isso impede que ele desapareça
-        };
-        button.Clicked += ClickAnim;
-
-        var textStack = new VerticalStackLayout();
-        textStack.Children.Add(mainLabel);
-        textStack.Children.Add(dateLabel);
-        textStack.Children.Add(button); 
-
-
-        var border = new Border
-        {
-            Style = (Style)Resources["BorderStyle"],
-            BackgroundColor = Color.FromArgb(BorderColor),
-            Content = textStack
-        };
-
-        EventStackLayout.Children.Add(border);
-    }
-
-
-    private async void ClickAnim(object sender, EventArgs e)
-    {
-        var button = (Button)sender;
-
-        await button.ScaleTo(0.8, 60, Easing.Linear);
-        await button.ScaleTo(1.0, 60, Easing.Linear);
-
-        await Navigation.PushAsync(new DescriptPage());
-    }
-
-
-    //private async void GoToDescription(object sender, EventArgs e)
-    //{
-    //    await Navigation.PushAsync(new DescriptionPage());
-    //}
 
     private Color GetRandomColor()
     {

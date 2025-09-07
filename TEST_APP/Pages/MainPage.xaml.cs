@@ -6,7 +6,6 @@ namespace TEST_APP.Pages
     {
         public MainPage(){
             InitializeComponent();
-            Debug.WriteLine("DAWG");
         }
 
         private async void NavigateToSecondPage(object sender, EventArgs e){
