@@ -53,7 +53,7 @@ public partial class ManagePage : ContentPage
         {
             Style = (Style)Resources["GeneralButtonStyle"],
             HorizontalOptions = LayoutOptions.End,
-            VerticalOptions = LayoutOptions.Start, // Isso impede que ele desapareça
+            VerticalOptions = LayoutOptions.Start, 
         };
         button.Clicked += ClickAnim;
 
@@ -85,10 +85,10 @@ public partial class ManagePage : ContentPage
     }
 
 
-    //private async void GoToDescription(object sender, EventArgs e)
-    //{
-    //    await Navigation.PushAsync(new DescriptionPage());
-    //}
+    /*private async void GoToDescription(object sender, EventArgs e)
+      {
+          await Navigation.PushAsync(new DescriptionPage());
+      }*/
 
     private Color GetRandomColor()
     {
