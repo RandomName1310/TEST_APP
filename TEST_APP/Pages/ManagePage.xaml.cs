@@ -1,94 +1,62 @@
+using System.Data;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
+using Microsoft.Data.SqlClient;
 using TEST_APP;
+using TEST_APP.Services;
+
 
 namespace TEST_APP.Pages;
 
-public partial class SecondPage : ContentPage
+public partial class ManagePage : ContentPage
 {
-    public SecondPage()
+    public ManagePage()
     {
         InitializeComponent();
-        LoadEvents();
     }
 
-    private async void LoadEvents()
+    protected override void OnAppearing()
     {
-        var readerService = new XmlReaderService();
-        string[,] events = await readerService.ReadXml("Events.xml");
-
-        CreateEvents(events);
+        base.OnAppearing();
+        ClearEvents();
+        ShowEvents();
     }
 
-    private void CreateEvents(string[,] events)
+    public void ShowEvents()
     {
-        for(int i = 0; i < events.GetLength(0); i++)
+        var ev_manager = new EventManager(Resources, EventStackLayout, Navigation);
+
+        var command = new SqlCommand(@"
+            SELECT E.event_id, E.name, E.description, E.date_time, E.link, E.number_limit
+            FROM Volunteer V
+            JOIN Volunteer_Event VE ON VE.volunteer_id = V.volunteer_id
+            JOIN Events E ON E.event_id = VE.event_id
+            WHERE V.email = @email;
+        ");
+        command.Parameters.AddWithValue("@email", UserService.UService.currentUser.Email);
+        DataTable Table = DatabaseConnector.ExecuteReadQuery(command);
+
+        foreach (DataRow row in Table.Rows)
         {
-            string Title = events[i, 0];
-            string Date = events[i, 1];
-            string BorderColor = events[i, 2];
+            var event_data = new EventManager.event_data {
+                event_id = Convert.ToInt32(row["event_id"]),
+                name = row["name"].ToString() ?? "None",
+                description = row["description"].ToString() ?? "None",
+                date_time = row["date_time"].ToString() ?? "None",
+                link = row["link"].ToString() ?? "None",
+                number_limit = Convert.ToInt32(row["number_limit"]),
+                color = GetRandomColor().ToHex()
+            };
 
-            AddEvent(Title, Date, BorderColor);
+            ev_manager.add_event_manage(event_data);
         }
     }
 
-    public void AddEvent(string M_Text, string D_Text, string BorderColor)
-    {
-        var mainLabel = new Label
-        {
-            Style = (Style)Resources["MainText"],
-            Text = M_Text,
-            HorizontalOptions = LayoutOptions.Start
-        };
-
-        var dateLabel = new Label
-        {
-            Style = (Style)Resources["DateText"],
-            Text = D_Text,
-            HorizontalOptions = LayoutOptions.Start,
-            VerticalOptions = LayoutOptions.End
-        };
-
-        var button = new Button
-        {
-            Style = (Style)Resources["GeneralButtonStyle"],
-            HorizontalOptions = LayoutOptions.End,
-            VerticalOptions = LayoutOptions.Start, // Isso impede que ele desapareça
-        };
-        button.Clicked += ClickAnim;
-
-        var textStack = new VerticalStackLayout();
-        textStack.Children.Add(mainLabel);
-        textStack.Children.Add(dateLabel);
-        textStack.Children.Add(button); 
-
-
-        var border = new Border
-        {
-            Style = (Style)Resources["BorderStyle"],
-            BackgroundColor = Color.FromArgb(BorderColor),
-            Content = textStack
-        };
-
-        EventStackLayout.Children.Add(border);
+    public void ClearEvents() {
+        foreach (var child in EventStackLayout.Children.ToList()) {
+            EventStackLayout.Children.Remove(child);
+        }
     }
-
-
-    private async void ClickAnim(object sender, EventArgs e)
-    {
-        var button = (Button)sender;
-
-        await button.ScaleTo(0.8, 60, Easing.Linear);
-        await button.ScaleTo(1.0, 60, Easing.Linear);
-
-        await Navigation.PushAsync(new DescriptPage());
-    }
-
-
-    //private async void GoToDescription(object sender, EventArgs e)
-    //{
-    //    await Navigation.PushAsync(new DescriptionPage());
-    //}
 
     private Color GetRandomColor()
     {

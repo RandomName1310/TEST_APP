@@ -18,7 +18,6 @@
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
 		<ApplicationTitle>TEST_APP</ApplicationTitle>
@@ -60,27 +59,48 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="MySqlConnector" Version="2.4.0" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Cards\EventManageCard.xaml.cs">
+	    <DependentUpon>EventManageCard.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\DescriptPage.xaml.cs">
 	    <DependentUpon>DescriptPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Pages\ManagePage.xaml.cs">
 	    <DependentUpon>ManagePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\LoginPage.xaml.cs">
+	    <DependentUpon>LoginPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Cards\EventManageCard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Cards\EventAddCard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\DescriptPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\ManagePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\SecondPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Dictionaries\ButtonStyle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

@@ -1,7 +1,7 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TEST_APP.Pages.MainPage"
-             BackgroundColor="Black">
+             BackgroundColor="#262626">
 
     <!-- STYLES -->
     <ContentPage.Resources>
@@ -11,11 +11,6 @@
             <Setter Property="WidthRequest" Value="250"/>
             <Setter Property="HeightRequest" Value="80"/>
             <Setter Property="CornerRadius" Value="20"/>
-            <Setter Property="Shadow">
-                <Setter.Value>
-                    <Shadow Brush="Gray" Offset="5,5" Radius="10" Opacity="0.4"/>
-                </Setter.Value>
-            </Setter>
             <Setter Property="HorizontalOptions" Value="Center"/>
         </Style>
 
@@ -24,41 +19,50 @@
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="FontFamily" Value="Tagesschrift"/>
         </Style>
     </ContentPage.Resources>
 
     <!-- LAYOUT -->
     <AbsoluteLayout>
-
-        <!-- IMAGEM TOP LEFT -->   
-        <!-- CENTRAL CONTENT OVERLAY -->
         <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
               AbsoluteLayout.LayoutFlags="All"
               VerticalOptions="FillAndExpand"
               Padding="30">
 
             <VerticalStackLayout Spacing="5" VerticalOptions="Center" HorizontalOptions="Center">
+                <ImageButton Source="user_icon.png"
+                             Background="#262626"
+                             WidthRequest="20"
+                             HeightRequest="20"
+                             HorizontalOptions="End"
+                             VerticalOptions="Start"
+                             Clicked="GoToLoginPage"/>
+                
+                <!--BLANK SPACE-->
+                <BoxView HeightRequest="20" Opacity="0"/> 
+
                 <Label Text="AMO CRIANÇA"
                        Style="{StaticResource TitleStyle}"
                        LineBreakMode="WordWrap"/>
                 <Label Text="app do voluntário"
                        Style="{StaticResource TitleStyle}"
                        LineBreakMode="WordWrap"/>
-                
-                <BoxView HeightRequest="50" Opacity="0"/> <!--BLANK SPACE-->
+
+                <!--BLANK SPACE-->
+                <BoxView HeightRequest="50" Opacity="0"/>
 
 
                 <Button Text="Ver Evento"
                         Style="{StaticResource GeneralButtonStyle}"
-                        Clicked="NavigateToSecondPage"
+                        Clicked="GoToSecondPage"
                         Background="Green"/>
-                
-                <BoxView HeightRequest="10" Opacity="0"/> <!--BLANK SPACE-->
+
+                <!--BLANK SPACE-->
+                <BoxView HeightRequest="10" Opacity="0"/> 
                 
                 <Button Text="Gerenciar Evento"
                         Style="{StaticResource GeneralButtonStyle}"
-                        Clicked="NavigateToManagePage"
+                        Clicked="GoToManagePage"
                         Background="Red"/>
             </VerticalStackLayout>
         </Grid>

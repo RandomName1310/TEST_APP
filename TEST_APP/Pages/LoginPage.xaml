@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TEST_APP.Pages.LoginPage"
+             Title="LoginPage" BackgroundColor="#e0d7d7">
+
+    <!-- Border externa para criar a borda preta do container branco -->
+    <Border HorizontalOptions="Center" 
+            VerticalOptions="Center"
+            Stroke="Black"
+            StrokeThickness="2"
+            StrokeShape="RoundRectangle 10"
+            BackgroundColor="White">
+
+        <VerticalStackLayout Spacing="15" 
+                            WidthRequest="300" 
+                            Padding="20">
+            <Label 
+                Text="Sign In"
+                HorizontalOptions="Center" 
+                TextColor="Black"
+                FontSize="40"
+                Padding="0, 25,0,0"
+                FontAttributes="Bold"/>
+
+            <Image Source="user_icon.png"
+                WidthRequest="150"
+                HeightRequest="150"/>
+
+            <Border Stroke="black"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 5"
+                    WidthRequest="250">
+                <Entry x:Name="NameEntry"
+                       Placeholder="Nome"
+                       BackgroundColor="White"/>
+            </Border>
+
+            <Border Stroke="black"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 5"
+                    WidthRequest="250">
+                <Entry x:Name="AgeEntry"
+                       Placeholder="Idade"
+                       BackgroundColor="White"/>
+            </Border>
+
+            <Border Stroke="black"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 5"
+                    WidthRequest="250">
+                <Entry x:Name="EmailEntry"
+                       Placeholder="Email"
+                       BackgroundColor="White"/>
+            </Border>
+
+            <Border Stroke="black"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 5"
+                    WidthRequest="250">
+                <Entry x:Name="PasswordEntry"
+                       Placeholder="Senha"
+                       BackgroundColor="White"/>
+            </Border>
+
+            <Button Text="Criar conta"
+                    BackgroundColor="Green"
+                    WidthRequest="250"
+                    Margin="0,10,0,0"
+                    Clicked="CreateUser"/>
+
+        </VerticalStackLayout>
+    </Border>
+</ContentPage>

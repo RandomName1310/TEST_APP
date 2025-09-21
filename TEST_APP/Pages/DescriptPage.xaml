@@ -1,56 +1,52 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TEST_APP.Pages.DescriptPage"
-             BackgroundColor="Black">
+             BackgroundColor="#262626">
 
     <ScrollView>
         <VerticalStackLayout Spacing="15" Padding="20">
-            <Label 
+            <Label x:Name="Title"
                 Text="Evento X" 
                 FontAttributes="Bold" 
                 TextColor="White"
                 FontSize="40"
-                HorizontalOptions="FillAndExpand"
                 HorizontalTextAlignment="Center" />
 
-            <Label 
+            <Label x:Name="DateTime"
                 Text="23/4/2020"
                 FontSize="20"
                 TextColor="White"
-                HorizontalOptions="FillAndExpand"
                 HorizontalTextAlignment="Center" />
 
-            <Label 
+            <Label x:Name="Description"
                 Text="O evento Festival da Inovação e Tecnologia é uma imersão de três dias destinada a explorar as mais recentes tendências e inovações tecnológicas.O evento Festival da Inovação e Tecnologia é uma imersão de três dias destinada a explorar as mais recentes tendências e inovações tecnológicas.O evento Festival da Inovação e Tecnologia é uma imersão de três dias destinada a explorar as mais recentes tendências e inovações tecnológicas."
                 FontSize="13"
                 WidthRequest="300"
                 TextColor="White"
                 LineBreakMode="WordWrap"
-                HorizontalOptions="FillAndExpand"
                 HorizontalTextAlignment="Center" />
 
-            <Label 
+            <Label
                 Text="Link:"
                 Margin="0,20,0,0"
                 FontAttributes="Bold" 
                 TextColor="White"
                 FontSize="30"
-                HorizontalOptions="FillAndExpand"
                 HorizontalTextAlignment="Center" />
 
-            <Label 
+            <Label x:Name="Link"
                 Text="https://chat.whatsapp.com/23112424"
                 FontSize="15"
                 TextColor="Blue"
-                HorizontalOptions="FillAndExpand"
                 HorizontalTextAlignment="Center" />
 
             <Button Text="Inscrever-se"
-                    BackgroundColor="Black"
                     TextColor="White"
                     WidthRequest="200"
                     FontSize="20"
-                    HorizontalOptions="Center" />
+                    BackgroundColor="Green"
+                    HorizontalOptions="Center" 
+                    Clicked="AddUser"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

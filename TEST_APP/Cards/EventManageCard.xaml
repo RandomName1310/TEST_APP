@@ -1,10 +1,10 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TEST_APP.Pages.ManagePage"
-             BackgroundColor="#262626">
+             x:Class="TEST_APP.Cards.EventManageCard">
 
     <!-- STYLE -->
-    <ContentPage.Resources>
+    <ContentView.Resources>
         <Style x:Key="GeneralButtonStyle" TargetType="Button">
             <Setter Property="Text" Value="X"/>
             <Setter Property="BackgroundColor" Value="Red"/>
@@ -30,14 +30,26 @@
             <Setter Property="TextColor" Value="Black"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
-    </ContentPage.Resources>
+    </ContentView.Resources>
 
+    <Border x:Name="MainBorder"
+            BackgroundColor="{Binding color}"
+            Style="{StaticResource BorderStyle}">
+        <VerticalStackLayout Padding="10" Spacing="4">
+            <Label Text="{Binding name}"
+                   Style="{StaticResource MainText}"
+                   HorizontalOptions="Start"/>
 
-    <ScrollView>
-        <VerticalStackLayout x:Name="EventStackLayout" Padding="10">
-                <!-- Events added dynamically -->
+            <Label Text="{Binding date_time}"
+                   Style="{StaticResource DateText}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End"/>
+
+            <Button x:Name="GoToButton"
+                    Style="{StaticResource GeneralButtonStyle}"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Clicked="ExitEvent"/>
         </VerticalStackLayout>
-    </ScrollView>
-
-
-</ContentPage>
+    </Border>
+</ContentView>

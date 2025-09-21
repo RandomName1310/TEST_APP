@@ -21,10 +21,14 @@
          Title="DescriptPage"
          ContentTemplate="{DataTemplate local:DescriptPage}"
          Route="Pages.DescriptPage" />
-    
+
     <ShellContent
          Title="ManagePage"
          ContentTemplate="{DataTemplate local:ManagePage}"
          Route="Pages.ManagePage" />
-
+    
+    <ShellContent
+         Title="LoginPage"
+         ContentTemplate="{DataTemplate local:LoginPage}"
+         Route="Pages.LoginPage" />
 </Shell>
