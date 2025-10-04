@@ -4,7 +4,8 @@
              BackgroundColor="#262626">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="15" Padding="20">
+        <Grid x:Name="ContentStack">
+            <VerticalStackLayout Spacing="15" Padding="20">
             <Label x:Name="Title"
                 Text="Evento X" 
                 FontAttributes="Bold" 
@@ -19,7 +20,7 @@
                 HorizontalTextAlignment="Center" />
 
             <Label x:Name="Description"
-                Text="O evento Festival da Inovação e Tecnologia é uma imersão de três dias destinada a explorar as mais recentes tendências e inovações tecnológicas.O evento Festival da Inovação e Tecnologia é uma imersão de três dias destinada a explorar as mais recentes tendências e inovações tecnológicas.O evento Festival da Inovação e Tecnologia é uma imersão de três dias destinada a explorar as mais recentes tendências e inovações tecnológicas."
+                Text=""
                 FontSize="13"
                 WidthRequest="300"
                 TextColor="White"
@@ -46,7 +47,8 @@
                     FontSize="20"
                     BackgroundColor="Green"
                     HorizontalOptions="Center" 
-                    Clicked="AddUser"/>
-        </VerticalStackLayout>
+                    Clicked="OpenRoleSetter"/>
+            </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

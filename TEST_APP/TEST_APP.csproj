@@ -70,13 +70,13 @@
 	  <Compile Update="Cards\EventManageCard.xaml.cs">
 	    <DependentUpon>EventManageCard.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\DescriptPage.xaml.cs">
+	  <Compile Update="Content\Pages\DescriptPage.xaml.cs">
 	    <DependentUpon>DescriptPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\ManagePage.xaml.cs">
+	  <Compile Update="Content\Pages\ManagePage.xaml.cs">
 	    <DependentUpon>ManagePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\LoginPage.xaml.cs">
+	  <Compile Update="Content\Pages\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
@@ -88,16 +88,22 @@
 	  <MauiXaml Update="Cards\EventAddCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\DescriptPage.xaml">
+	  <MauiXaml Update="Cards\RoleManageCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\ManagePage.xaml">
+	  <MauiXaml Update="Content\Forms\RoleSetter.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\LoginPage.xaml">
+	  <MauiXaml Update="Content\Pages\DescriptPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\SecondPage.xaml">
+	  <MauiXaml Update="Content\Pages\ManagePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Content\Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Content\Pages\SecondPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Dictionaries\ButtonStyle.xaml">

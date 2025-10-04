@@ -16,10 +16,18 @@ namespace TEST_APP.Services {
             public int event_id { get; set; }
             public string name { get; set; }
             public string description { get; set; }
-            public string date_time { get; set; }
+            public string date { get; set; }
+            public string time_begin { get; set; }
+            public string time_end { get; set; }
             public string link { get; set; }
             public int number_limit { get; set; }
             public string color { get; set; }
+        }
+
+        public class role_data {
+            public int role_id { get; set; }
+            public string name { get; set; }
+            public int number_limit { get; set; }
         }
 
         public EventManager(ResourceDictionary resources, Layout eventStackLayout, INavigation navigation)
@@ -37,6 +45,10 @@ namespace TEST_APP.Services {
 
         public void add_event_manage(event_data ev_data) {
             EventManageCard card = new EventManageCard(ev_data);
+            _eventStackLayout.Children.Add(card);
+        }
+        public void add_role_manage(role_data r_data) {
+            RoleManageCard card = new RoleManageCard(r_data);
             _eventStackLayout.Children.Add(card);
         }
     }

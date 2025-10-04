@@ -42,7 +42,9 @@ public partial class ManagePage : ContentPage
                 event_id = Convert.ToInt32(row["event_id"]),
                 name = row["name"].ToString() ?? "None",
                 description = row["description"].ToString() ?? "None",
-                date_time = row["date_time"].ToString() ?? "None",
+                date = row["date"].ToString() ?? "None",
+                time_begin = row["time_begin"].ToString() ?? "None",
+                time_end = row["time_end"].ToString() ?? "None",
                 link = row["link"].ToString() ?? "None",
                 number_limit = Convert.ToInt32(row["number_limit"]),
                 color = GetRandomColor().ToHex()

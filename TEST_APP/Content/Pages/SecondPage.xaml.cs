@@ -30,7 +30,9 @@ public partial class SecondPage : ContentPage {
                 event_id = Convert.ToInt32(row["event_id"]),
                 name = row["name"].ToString() ?? "none",
                 description = row["description"].ToString() ?? "none",
-                date_time = row["date_time"].ToString() ?? "none",
+                date = row["date"].ToString() ?? "None",
+                time_begin = row["time_begin"].ToString() ?? "None",
+                time_end = row["time_end"].ToString() ?? "None",
                 link = row["link"].ToString() ?? "none",
                 number_limit = Convert.ToInt32(row["number_limit"]),
                 color = GetRandomColor().ToHex()

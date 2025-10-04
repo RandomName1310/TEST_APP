@@ -40,5 +40,22 @@ namespace TEST_APP.Services {
             }
             return rowsAffected;
         }
+
+        // query that returns an object that is then converted to a type
+        public static object? ExecuteScalarQuery(SqlCommand command) {
+            object? result = null;
+            try {
+                using (var connection = new SqlConnection(connectionString)) {
+                    connection.Open();
+                    command.Connection = connection;
+                    result = command.ExecuteScalar();
+                    Debug.WriteLine("Scalar query executed successfully: " + command.CommandText);
+                }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine("An error occurred: " + ex.Message);
+            }
+            return result;
+        }
     }
 }
