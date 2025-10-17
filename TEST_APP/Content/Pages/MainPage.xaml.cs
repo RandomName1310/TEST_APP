@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using TEST_APP.Services;
+using TEST_APP.Pages.Login;
 
 namespace TEST_APP.Pages
 {
@@ -24,7 +25,12 @@ namespace TEST_APP.Pages
             await Navigation.PushAsync(new ManagePage());
         }
         private async void GoToLoginPage(object sender, EventArgs e) {
-            await Navigation.PushAsync(new LoginPage());
+            if (UserService.UService.currentUser != null) {
+                await Navigation.PushAsync(new AccountPage());
+            }
+            else {
+                await Navigation.PushAsync(new AccountLogPage());
+            }
         }
     }
 }

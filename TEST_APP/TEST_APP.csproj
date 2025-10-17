@@ -73,11 +73,20 @@
 	  <Compile Update="Content\Pages\DescriptPage.xaml.cs">
 	    <DependentUpon>DescriptPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Content\Pages\Login\AccountLogPage.xaml.cs">
+	    <DependentUpon>AccountLogPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Content\Pages\Login\AccountPage.xaml.cs">
+	    <DependentUpon>AccountPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Content\Pages\ManagePage.xaml.cs">
 	    <DependentUpon>ManagePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Content\Pages\LoginPage.xaml.cs">
+	  <Compile Update="Content\Pages\Login\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Content\Pages\Login\SigninPage.xaml.cs">
+	    <DependentUpon>SigninPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -91,16 +100,28 @@
 	  <MauiXaml Update="Cards\RoleManageCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Content\Forms\EditInfoForm.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Content\Forms\RoleSetter.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Content\Pages\DescriptPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Content\Pages\Login\AccountLogPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Content\Pages\Login\SigninPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Content\Pages\Login\AccountPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Content\Pages\ManagePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Content\Pages\LoginPage.xaml">
+	  <MauiXaml Update="Content\Pages\Login\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Content\Pages\SecondPage.xaml">

@@ -34,7 +34,6 @@ public partial class SecondPage : ContentPage {
                 time_begin = row["time_begin"].ToString() ?? "None",
                 time_end = row["time_end"].ToString() ?? "None",
                 link = row["link"].ToString() ?? "none",
-                number_limit = Convert.ToInt32(row["number_limit"]),
                 color = GetRandomColor().ToHex()
             };
 

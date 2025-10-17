@@ -48,6 +48,22 @@
                                              HorizontalOptions="Fill"
                                              VerticalOptions="Start"
                                              Padding="5">
+                            <Label Text="Escolha a data que queres participar:"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   TextColor="White"/>
+
+                            <Picker x:Name="DataPicker"
+                                    Title="Escolha data que queres participar"
+                                    HorizontalOptions="Fill"
+                                    TextColor="Black"
+                                    MaximumWidthRequest="300"
+                                    ZIndex="1"
+                                    BackgroundColor="#F5F5F5">
+                                    <Picker.Items>
+                                    </Picker.Items>
+                            </Picker>    
 
                             <Label Text="Escolha o papél que queres exercer:"
                                    FontSize="15"

@@ -3,10 +3,10 @@ using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 using System.Data;
 using TEST_APP.Services;
-namespace TEST_APP.Pages;
+namespace TEST_APP.Pages.Login;
 
-public partial class LoginPage : ContentPage {
-    public LoginPage() {
+public partial class SigninPage : ContentPage {
+    public SigninPage() {
         InitializeComponent();
     }
 
@@ -32,7 +32,7 @@ public partial class LoginPage : ContentPage {
 
         // debugs
         await DisplayAlert(
-            "Resultado de login",              
+            "Resultado de sign in",              
             "Conta criada com sucesso!", 
             "Continuar");                    
         Debug.WriteLine("New user added!");

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TEST_APP.Pages.Login.AccountPage"
+             Title="AccountPage"
+             BackgroundColor="#e0d7d7">
+
+    <!-- RECURSOS GLOBAIS -->
+    <ContentPage.Resources>
+        <!-- TÍTULOS -->
+        <Style TargetType="Label" x:Key="TitleStyle">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+
+        <!-- ROTULOS -->
+        <Style TargetType="Label" x:Key="FieldLabelStyle">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="LineBreakMode" Value="TailTruncation"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+        </Style>
+
+        <!-- BORDA -->
+        <Style TargetType="Border" x:Key="FieldBorderStyle">
+            <Setter Property="WidthRequest" Value="250"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="StrokeShape" Value="RoundRectangle 20"/>
+        </Style>
+
+        <!-- EDIÇÃO -->
+        <Style TargetType="ImageButton" x:Key="EditButtonStyle">
+            <Setter Property="Source" Value="edicao.png"/>
+            <Setter Property="Background" Value="#e0d7d7"/>
+            <Setter Property="WidthRequest" Value="25"/>
+            <Setter Property="HeightRequest" Value="25"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <!-- LAYOUT -->
+    <Grid
+        VerticalOptions="Fill"
+        HorizontalOptions="Fill"
+        x:Name="ContentStack">
+        <!-- centralizado -->
+        <ScrollView VerticalOptions="Center"
+                    HorizontalOptions="Center">
+            <Grid VerticalOptions="Center"
+                  HorizontalOptions="Center">
+                <VerticalStackLayout Spacing="15">
+
+                    <Label Text="Edição de Conta"
+                           Style="{StaticResource TitleStyle}"/>
+
+                    <Image Source="user_icon.png"
+                           WidthRequest="150"
+                           HeightRequest="150"
+                           HorizontalOptions="Center"/>
+
+                    <!-- Espaço -->
+                    <BoxView HeightRequest="20" Opacity="0"/>
+
+                    <!-- CAMPOS -->
+                    <HorizontalStackLayout Spacing="15"
+                                           HorizontalOptions="Center">
+                        <Border Style="{StaticResource FieldBorderStyle}">
+                            <Label x:Name="NameLabel" 
+                                   Style="{StaticResource FieldLabelStyle}"/>
+                        </Border>
+                        <ImageButton Style="{StaticResource EditButtonStyle}"
+                                     x:Name="NameButton"
+                                     ZIndex="1"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="15"
+                                           HorizontalOptions="Center">
+                        <Border Style="{StaticResource FieldBorderStyle}">
+                            <Label x:Name="AgeLabel" 
+                                   Style="{StaticResource FieldLabelStyle}"/>
+                        </Border>
+                        <ImageButton Style="{StaticResource EditButtonStyle}"
+                                     x:Name="AgeButton"
+                                     ZIndex="1"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="15"
+                                           HorizontalOptions="Center">
+                        <Border Style="{StaticResource FieldBorderStyle}">
+                            <Label x:Name="EmailLabel"                                  
+                                   Style="{StaticResource FieldLabelStyle}"/>
+                        </Border>
+                        <ImageButton Style="{StaticResource EditButtonStyle}"
+                                     x:Name="EmailButton"
+                                     ZIndex="1"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="15"
+                                           HorizontalOptions="Center">
+                        <Border Style="{StaticResource FieldBorderStyle}">
+                            <Label x:Name="PasswordLabel" 
+                                   Style="{StaticResource FieldLabelStyle}"/>
+                        </Border>
+                        <ImageButton Style="{StaticResource EditButtonStyle}"
+                                     x:Name="PasswordButton"
+                                     ZIndex="1"/>
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

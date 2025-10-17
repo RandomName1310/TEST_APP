@@ -10,7 +10,10 @@ public partial class RoleManageCard : ContentView {
         InitializeComponent();
         role_data = _role_data;
         BindingContext = _role_data;
+        LimitLabel.Text = $"Número limite: {role_data.number_limit}";
+
     }
+    public string RoleName => RoleNameLabel.Text;
     public string TimeBeginPicker => TimeBegin.Time.ToString();
     public string TimeEndPicker => TimeEnd.Time.ToString();
 

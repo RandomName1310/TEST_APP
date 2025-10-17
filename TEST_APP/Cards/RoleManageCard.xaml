@@ -8,7 +8,6 @@
         <!-- Title Text -->
         <Style x:Key="MainText" TargetType="Label">
             <Setter Property="TextColor" Value="#222"/>
-            <Setter Property="FontSize" Value="22"/>
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
             <Setter Property="VerticalOptions" Value="Center"/>
@@ -18,7 +17,7 @@
         <!-- Subtitle/Text Label -->
         <Style x:Key="SubText" TargetType="Label">
             <Setter Property="TextColor" Value="#555"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="15"/>
             <Setter Property="VerticalOptions" Value="Center"/>
         </Style>
 
@@ -72,9 +71,11 @@
             </Grid.ColumnDefinitions>
 
             <!-- Header -->
-            <Label Grid.Column="0" Grid.ColumnSpan="2"
+            <Label x:Name="RoleNameLabel"
+                   Grid.Column="0" Grid.ColumnSpan="2"
                    Text="{Binding name}"
-                   Style="{StaticResource MainText}" 
+                   Style="{StaticResource MainText}"
+                   FontSize="20"
                    VerticalOptions="Center"/>
 
             <ImageButton Grid.Column="2"
@@ -86,7 +87,8 @@
                          Clicked="OnCloseClicked"/>
 
             <!-- Number Limit -->
-            <Label Grid.Row="1" Grid.Column="0"
+            <Label x:Name="LimitLabel"
+                   Grid.Row="1" Grid.Column="0"
                    Text="Número limite:"
                    Style="{StaticResource SubText}" />
 

@@ -15,7 +15,6 @@
         </Style>
 
         <Style TargetType="Label" x:Key="TitleStyle">
-            <Setter Property="FontSize" Value="40"/>
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
@@ -32,8 +31,8 @@
             <VerticalStackLayout Spacing="5" VerticalOptions="Center" HorizontalOptions="Center">
                 <ImageButton Source="user_icon.png"
                              Background="#262626"
-                             WidthRequest="20"
-                             HeightRequest="20"
+                             MaximumWidthRequest="50"
+                             MaximumHeightRequest="50"
                              HorizontalOptions="End"
                              VerticalOptions="Start"
                              Clicked="GoToLoginPage"/>
@@ -43,8 +42,10 @@
 
                 <Label Text="AMO CRIANÇA"
                        Style="{StaticResource TitleStyle}"
+                       FontSize="40"
                        LineBreakMode="WordWrap"/>
                 <Label Text="app do voluntário"
+                       FontSize="25"
                        Style="{StaticResource TitleStyle}"
                        LineBreakMode="WordWrap"/>
 

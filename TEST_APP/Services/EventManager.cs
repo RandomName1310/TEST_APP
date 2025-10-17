@@ -20,7 +20,6 @@ namespace TEST_APP.Services {
             public string time_begin { get; set; }
             public string time_end { get; set; }
             public string link { get; set; }
-            public int number_limit { get; set; }
             public string color { get; set; }
         }
 
