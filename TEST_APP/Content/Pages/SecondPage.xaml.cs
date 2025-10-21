@@ -21,7 +21,7 @@ public partial class SecondPage : ContentPage {
 
     private void ShowEvents() {
         // convert query to command
-        var command = new SqlCommand("SELECT * FROM events");
+        var command = new SqlCommand("SELECT * FROM Events");
         var ev_manager = new EventManager(Resources, EventStackLayout, Navigation);
         DataTable table = DatabaseConnector.ExecuteReadQuery(command);
 
@@ -30,7 +30,7 @@ public partial class SecondPage : ContentPage {
                 event_id = Convert.ToInt32(row["event_id"]),
                 name = row["name"].ToString() ?? "none",
                 description = row["description"].ToString() ?? "none",
-                date = row["date"].ToString() ?? "None",
+                date = row["date"].ToString().Replace("00:00:00", "") ?? "None",
                 time_begin = row["time_begin"].ToString() ?? "None",
                 time_end = row["time_end"].ToString() ?? "None",
                 link = row["link"].ToString() ?? "none",

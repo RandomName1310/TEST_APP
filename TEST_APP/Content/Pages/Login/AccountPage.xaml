@@ -54,70 +54,84 @@
         HorizontalOptions="Fill"
         x:Name="ContentStack">
         <!-- centralizado -->
-        <ScrollView VerticalOptions="Center"
-                    HorizontalOptions="Center">
-            <Grid VerticalOptions="Center"
+        <Grid VerticalOptions="Center"
                   HorizontalOptions="Center">
-                <VerticalStackLayout Spacing="15">
+            <VerticalStackLayout Spacing="15">
 
-                    <Label Text="Edição de Conta"
+                <Label Text="Edição de Conta"
                            Style="{StaticResource TitleStyle}"/>
 
-                    <Image Source="user_icon.png"
+                <ImageButton x:Name="UserImage"
+                             BackgroundColor="#e0d7d7"
+                           Source="user_icon.png"
                            WidthRequest="150"
                            HeightRequest="150"
-                           HorizontalOptions="Center"/>
+                           Aspect="AspectFill"
+                           CornerRadius="75"
+                           BorderColor="#e0d7d7"
+                           BorderWidth="2"
+                           HorizontalOptions="Center"
+                           Clicked="OnPickImageClicked"/>
 
-                    <!-- Espaço -->
-                    <BoxView HeightRequest="20" Opacity="0"/>
+                <!-- Espaço -->
+                <BoxView HeightRequest="20" Opacity="0"/>
 
-                    <!-- CAMPOS -->
-                    <HorizontalStackLayout Spacing="15"
+                <!-- CAMPOS -->
+                <HorizontalStackLayout Spacing="15"
                                            HorizontalOptions="Center">
-                        <Border Style="{StaticResource FieldBorderStyle}">
-                            <Label x:Name="NameLabel" 
+                    <Border Style="{StaticResource FieldBorderStyle}">
+                        <Label x:Name="NameLabel" 
                                    Style="{StaticResource FieldLabelStyle}"/>
-                        </Border>
-                        <ImageButton Style="{StaticResource EditButtonStyle}"
+                    </Border>
+                    <ImageButton Style="{StaticResource EditButtonStyle}"
                                      x:Name="NameButton"
                                      ZIndex="1"/>
-                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
 
-                    <HorizontalStackLayout Spacing="15"
+                <HorizontalStackLayout Spacing="15"
                                            HorizontalOptions="Center">
-                        <Border Style="{StaticResource FieldBorderStyle}">
-                            <Label x:Name="AgeLabel" 
+                    <Border Style="{StaticResource FieldBorderStyle}">
+                        <Label x:Name="AgeLabel" 
                                    Style="{StaticResource FieldLabelStyle}"/>
-                        </Border>
-                        <ImageButton Style="{StaticResource EditButtonStyle}"
+                    </Border>
+                    <ImageButton Style="{StaticResource EditButtonStyle}"
                                      x:Name="AgeButton"
                                      ZIndex="1"/>
-                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
 
-                    <HorizontalStackLayout Spacing="15"
+                <HorizontalStackLayout Spacing="15"
                                            HorizontalOptions="Center">
-                        <Border Style="{StaticResource FieldBorderStyle}">
-                            <Label x:Name="EmailLabel"                                  
+                    <Border Style="{StaticResource FieldBorderStyle}">
+                        <Label x:Name="EmailLabel"                                  
                                    Style="{StaticResource FieldLabelStyle}"/>
-                        </Border>
-                        <ImageButton Style="{StaticResource EditButtonStyle}"
+                    </Border>
+                    <ImageButton Style="{StaticResource EditButtonStyle}"
                                      x:Name="EmailButton"
                                      ZIndex="1"/>
-                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
 
-                    <HorizontalStackLayout Spacing="15"
+                <HorizontalStackLayout Spacing="15"
                                            HorizontalOptions="Center">
-                        <Border Style="{StaticResource FieldBorderStyle}">
-                            <Label x:Name="PasswordLabel" 
+                    <Border Style="{StaticResource FieldBorderStyle}">
+                        <Label x:Name="PasswordLabel" 
                                    Style="{StaticResource FieldLabelStyle}"/>
-                        </Border>
-                        <ImageButton Style="{StaticResource EditButtonStyle}"
+                    </Border>
+                    <ImageButton Style="{StaticResource EditButtonStyle}"
                                      x:Name="PasswordButton"
                                      ZIndex="1"/>
-                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
 
-                </VerticalStackLayout>
-            </Grid>
-        </ScrollView>
+                <Border Style="{StaticResource FieldBorderStyle}"
+                            Stroke="Black"
+                            StrokeThickness="2">
+                    <Button BackgroundColor="Red"
+                                Text="Logout"
+                                FontAttributes="Bold"
+                                TextColor="Black"
+                                ZIndex="1"
+                                Clicked="LogoutUser"/>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
     </Grid>
 </ContentPage>

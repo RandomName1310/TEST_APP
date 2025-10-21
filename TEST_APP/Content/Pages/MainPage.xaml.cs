@@ -6,8 +6,38 @@ namespace TEST_APP.Pages
 {
     public partial class MainPage : ContentPage
     {
+        static private bool hasChosenIp = false;
+
         public MainPage(){
             InitializeComponent();
+        }
+
+        private async Task ChooseIp() {
+            string ip = await DisplayPromptAsync(
+                "Configuração de IP",
+                "Digite up IP válido:",
+                accept: "OK",
+                cancel: "Cancelar",
+                placeholder: "IP aqui..."
+            );
+            DatabaseConnector.SetIp(ip);
+        }
+
+        protected override async void OnAppearing() {
+            base.OnAppearing();
+            // set user image
+            if (UserService.UService.currentUser != null) {
+                string user_img = UserService.UService.currentUser.UserImgPath;
+                if (user_img != null) {
+                    UserImage.Source = ImageSource.FromFile(user_img);
+                }
+            }
+            if (!hasChosenIp)
+            {
+                hasChosenIp = true;
+                await Task.Delay(300);
+                await ChooseIp();
+            }
         }
 
         private async void GoToSecondPage(object sender, EventArgs e){

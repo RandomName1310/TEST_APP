@@ -11,14 +11,14 @@
             <Setter Property="TextColor" Value="Black"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="WidthRequest" Value="200"/>
-            <Setter Property="Margin" Value="0,-20,0,0"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
         </Style>
 
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="Stroke" Value="Black"/>
             <Setter Property="StrokeThickness" Value="2"/>
             <Setter Property="Padding" Value="5"/>
-            <Setter Property="HeightRequest" Value="110"/>
+            <Setter Property="HeightRequest" Value="130"/>
         </Style>
 
         <Style x:Key="MainText" TargetType="Label">
@@ -35,21 +35,28 @@
     <Border x:Name="MainBorder"
             BackgroundColor="{Binding color}"
             Style="{StaticResource BorderStyle}">
-        <VerticalStackLayout Padding="10" Spacing="4">
+        <Grid ColumnDefinitions="*, *"
+              RowDefinitions="*, *">
             <Label Text="{Binding name}"
                    Style="{StaticResource MainText}"
-                   HorizontalOptions="Start"/>
+                   HorizontalOptions="Start"
+                   Grid.Row="0"
+                   Grid.Column="0"/>
 
-            <Label Text="{Binding date_time}"
+            <Label Text="{Binding date}"
                    Style="{StaticResource DateText}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End"/>
+                   VerticalOptions="End"
+                   Grid.Row="1"
+                   Grid.Column="0"/>
 
             <Button x:Name="GoToButton"
                     Style="{StaticResource GeneralButtonStyle}"
                     HorizontalOptions="End"
                     VerticalOptions="Start"
-                    Clicked="GoToEvent"/>
-        </VerticalStackLayout>
+                    Clicked="GoToEvent"
+                    Grid.Row="1"
+                    Grid.Column="1"/>
+        </Grid>
     </Border>
 </ContentView>

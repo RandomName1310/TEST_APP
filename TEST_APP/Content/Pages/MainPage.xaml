@@ -29,12 +29,17 @@
               Padding="30">
 
             <VerticalStackLayout Spacing="5" VerticalOptions="Center" HorizontalOptions="Center">
-                <ImageButton Source="user_icon.png"
+                <ImageButton x:Name="UserImage"
+                             Source="user_icon.png"
                              Background="#262626"
                              MaximumWidthRequest="50"
                              MaximumHeightRequest="50"
                              HorizontalOptions="End"
                              VerticalOptions="Start"
+                             Aspect="AspectFill"
+                             CornerRadius="75"
+                             BorderColor="#e0d7d7"
+                             BorderWidth="2"
                              Clicked="GoToLoginPage"/>
                 
                 <!--BLANK SPACE-->

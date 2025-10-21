@@ -23,15 +23,22 @@
                 Padding="0, 25,0,0"
                 FontAttributes="Bold"/>
 
-            <Image Source="user_icon.png"
+            <ImageButton x:Name="UserImage"
+                Source="user_icon.png"
                 WidthRequest="150"
-                HeightRequest="150"/>
+                HeightRequest="150"
+                Aspect="AspectFill"
+                CornerRadius="75"
+                BorderColor="#e0d7d7"
+                BorderWidth="2"
+                Clicked="OnPickImageClicked"/>
 
             <Border Stroke="black"
                     StrokeThickness="1"
                     StrokeShape="RoundRectangle 5"
                     WidthRequest="250">
                 <Entry x:Name="NameEntry"
+                       TextColor="Black"
                        Placeholder="Nome"
                        BackgroundColor="White"/>
             </Border>
@@ -41,6 +48,7 @@
                     StrokeShape="RoundRectangle 5"
                     WidthRequest="250">
                 <Entry x:Name="AgeEntry"
+                       TextColor="Black"
                        Placeholder="Idade"
                        BackgroundColor="White"/>
             </Border>
@@ -50,6 +58,7 @@
                     StrokeShape="RoundRectangle 5"
                     WidthRequest="250">
                 <Entry x:Name="EmailEntry"
+                       TextColor="Black"
                        Placeholder="Email"
                        BackgroundColor="White"/>
             </Border>
@@ -59,6 +68,7 @@
                     StrokeShape="RoundRectangle 5"
                     WidthRequest="250">
                 <Entry x:Name="PasswordEntry"
+                       TextColor="Black"
                        Placeholder="Senha"
                        BackgroundColor="White"/>
             </Border>

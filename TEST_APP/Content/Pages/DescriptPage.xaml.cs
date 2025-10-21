@@ -32,16 +32,16 @@ namespace TEST_APP.Pages
             Link.Text = _data.link;
         }
 
-        private void OpenRoleSetter(object sender, EventArgs e) {
+        private async void OpenRoleSetter(object sender, EventArgs e) {
+            if (UserService.UService.currentUser == null) {
+                await DisplayAlert(
+                    "Usuário desconhecido",
+                    "Crie uma conta para prosseguir",
+                    "Continuar");
+                return;
+            }
             RoleSetter role_setter = new RoleSetter(_data);
             ContentStack.Add(role_setter);
-        }
-
-        async void ClickAnim(object sender) {
-            if(sender is Button btn) {
-                await btn.ScaleTo(0.9, 100, Easing.CubicOut);
-                await btn.ScaleTo(1.0, 100, Easing.CubicOut);
-            }
         }
     }
 }

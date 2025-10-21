@@ -28,6 +28,7 @@
                     StrokeShape="RoundRectangle 5"
                     WidthRequest="250">
                 <Entry x:Name="EmailEntry"
+                       TextColor="Black"
                        Placeholder="Email"
                        BackgroundColor="White"/>
             </Border>
@@ -38,7 +39,8 @@
                     WidthRequest="250">
                 <Entry x:Name="PasswordEntry"
                        Placeholder="Senha"
-                       BackgroundColor="White"/>
+                       BackgroundColor="White"
+                       TextColor="Black"/>
             </Border>
 
             <Button Text="Entrar"

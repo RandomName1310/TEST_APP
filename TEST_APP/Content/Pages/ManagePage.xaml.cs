@@ -27,10 +27,10 @@ public partial class ManagePage : ContentPage
         var ev_manager = new EventManager(Resources, EventStackLayout, Navigation);
 
         var command = new SqlCommand(@"
-            SELECT E.event_id, E.name, E.description, E.date_time, E.link, E.number_limit
+            SELECT E.event_ID, E.name, E.description, E.date, E.time_begin, E.time_end, E.link
             FROM Volunteer V
-            JOIN Volunteer_Event VE ON VE.volunteer_id = V.volunteer_id
-            JOIN Events E ON E.event_id = VE.event_id
+            JOIN Volunteer_Event VE ON VE.volunteer_ID = V.volunteer_ID
+            JOIN Events E ON E.event_id = VE.event_ID
             WHERE V.email = @email;
         ");
         command.Parameters.AddWithValue("@email", UserService.UService.currentUser.Email);
@@ -39,10 +39,10 @@ public partial class ManagePage : ContentPage
         foreach (DataRow row in Table.Rows)
         {
             var event_data = new EventManager.event_data {
-                event_id = Convert.ToInt32(row["event_id"]),
+                event_id = Convert.ToInt32(row["event_ID"]),
                 name = row["name"].ToString() ?? "None",
                 description = row["description"].ToString() ?? "None",
-                date = row["date"].ToString() ?? "None",
+                date = row["date"].ToString().Replace("00:00:00", "") ?? "None",
                 time_begin = row["time_begin"].ToString() ?? "None",
                 time_end = row["time_end"].ToString() ?? "None",
                 link = row["link"].ToString() ?? "None",

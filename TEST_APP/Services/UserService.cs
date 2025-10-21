@@ -12,6 +12,7 @@ namespace TEST_APP.Services {
         public int Age { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string UserImgPath { get; set; }
     }
     internal class UserService {
         public static class UService {
@@ -33,11 +34,6 @@ namespace TEST_APP.Services {
                 await SecureStorage.SetAsync(ACTIVE_USER_KEY, userJson);
             }
 
-            public static async Task<bool> IsLoggedInAsync() {
-                var user = await GetCurrentUserAsync();
-                return user != null && !string.IsNullOrEmpty(user.Email);
-            }
-
             public static void LogoutUser() {
                 currentUser = null;
                 SecureStorage.Remove(ACTIVE_USER_KEY);
@@ -52,6 +48,37 @@ namespace TEST_APP.Services {
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"Error loading user: {ex.Message}");
+                }
+            }
+
+            public static async Task<string?> GetUserImgPathAsync(FileResult result) {
+                if (result == null)
+                    return null;
+
+                try {
+                    string destPath = Path.Combine(FileSystem.AppDataDirectory, result.FileName);
+
+                    // Try to open stream (FileResult from FilePicker)
+                    try {
+                        using var sourceStream = await result.OpenReadAsync();
+                        using var destStream = File.Create(destPath);
+                        await sourceStream.CopyToAsync(destStream);
+                    }
+                    catch {
+                        // fallback: maybe Windows cannot open OpenReadAsync, copy directly from path
+                        if (!string.IsNullOrEmpty(result.FullPath) && File.Exists(result.FullPath)) {
+                            File.Copy(result.FullPath, destPath, overwrite: true);
+                        }
+                        else {
+                            throw; // nothing we can do
+                        }
+                    }
+
+                    return destPath;
+                }
+                catch (Exception ex) {
+                    System.Diagnostics.Debug.WriteLine($"Error saving file: {ex.Message}");
+                    return null;
                 }
             }
         }

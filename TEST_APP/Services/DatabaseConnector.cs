@@ -5,11 +5,21 @@ using System.Diagnostics;
 
 namespace TEST_APP.Services {
     static class DatabaseConnector {
-        static string connectionString = @"Server=192.168.1.132,1433;
-                                           Database=Amo_Database;
-                                           User Id=AmoUser;
-                                           Password=barbosa20;
-                                           TrustServerCertificate=True;";
+        static string ip_config = "192.168.1.170";
+        static string connectionString = BuildConnectionString(ip_config);
+
+        private static string BuildConnectionString(string ip) {
+            return @$"Server={ip},1433;
+                  Database=Amo_Database;
+                  User Id=AmoUser;
+                  Password=barbosa20;
+                  TrustServerCertificate=True;";
+        }
+
+        public static void SetIp(string ip) {
+            ip_config = ip;
+            connectionString = BuildConnectionString(ip); 
+        }
 
         public static DataTable ExecuteReadQuery(SqlCommand command) {
             var dataTable = new DataTable();
@@ -46,8 +56,8 @@ namespace TEST_APP.Services {
         }
 
         // query that returns an object that is then converted to a type
-        public static object? ExecuteScalarQuery(SqlCommand command) {
-            object? result = null;
+        public static object ExecuteScalarQuery(SqlCommand command) {
+            object result = null;
             try {
                 using (var connection = new SqlConnection(connectionString)) {
                     connection.Open();

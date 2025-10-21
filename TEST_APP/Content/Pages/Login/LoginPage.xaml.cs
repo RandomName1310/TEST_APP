@@ -25,7 +25,8 @@ public partial class LoginPage : ContentPage {
                 Name = table.Rows[0]["name"].ToString(),
                 Age = Convert.ToInt32(table.Rows[0]["age"]),
                 Email = table.Rows[0]["email"].ToString(),
-                Password = table.Rows[0]["password"].ToString()
+                Password = table.Rows[0]["password"].ToString(),
+                UserImgPath = table.Rows[0]["user_img"].ToString()
             };
             await UserService.UService.SetCurrentUserAsync(userData);
 
@@ -41,7 +42,10 @@ public partial class LoginPage : ContentPage {
             "Resultado de login",
             "Email ou senha incorretos!",
             "Continuar");
-        }              
+        }
+
+        // voltar para MainPage
+        await Navigation.PushAsync(new MainPage());
     }
 
     async void ClickAnim(object sender) {
