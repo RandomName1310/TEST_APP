@@ -26,7 +26,7 @@ public partial class LoginPage : ContentPage {
                 Age = Convert.ToInt32(table.Rows[0]["age"]),
                 Email = table.Rows[0]["email"].ToString(),
                 Password = table.Rows[0]["password"].ToString(),
-                UserImgPath = table.Rows[0]["user_img"].ToString()
+                UserImg = UserService.UserImgService.ToBase64((byte[])table.Rows[0]["user_img"])
             };
             await UserService.UService.SetCurrentUserAsync(userData);
 

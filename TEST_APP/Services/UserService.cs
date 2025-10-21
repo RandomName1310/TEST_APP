@@ -12,7 +12,7 @@ namespace TEST_APP.Services {
         public int Age { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string UserImgPath { get; set; }
+        public string UserImg { get; set; }
     }
     internal class UserService {
         public static class UService {
@@ -50,36 +50,38 @@ namespace TEST_APP.Services {
                     Debug.WriteLine($"Error loading user: {ex.Message}");
                 }
             }
+        }
 
-            public static async Task<string?> GetUserImgPathAsync(FileResult result) {
-                if (result == null)
-                    return null;
+        public static class UserImgService {
+            public static string ToBase64(byte[] data) {
+                if (data == null || data.Length == 0)
+                    throw new ArgumentException("O array de bytes está vazio.");
 
-                try {
-                    string destPath = Path.Combine(FileSystem.AppDataDirectory, result.FileName);
+                return Convert.ToBase64String(data);
+            }
 
-                    // Try to open stream (FileResult from FilePicker)
-                    try {
-                        using var sourceStream = await result.OpenReadAsync();
-                        using var destStream = File.Create(destPath);
-                        await sourceStream.CopyToAsync(destStream);
-                    }
-                    catch {
-                        // fallback: maybe Windows cannot open OpenReadAsync, copy directly from path
-                        if (!string.IsNullOrEmpty(result.FullPath) && File.Exists(result.FullPath)) {
-                            File.Copy(result.FullPath, destPath, overwrite: true);
-                        }
-                        else {
-                            throw; // nothing we can do
-                        }
-                    }
+            public static byte[] ToByteList(string base64) {
+                if (string.IsNullOrEmpty(base64))
+                    throw new ArgumentException("A string Base64 está vazia.");
 
-                    return destPath;
+                return Convert.FromBase64String(base64);
+            }
+
+            public static async Task<byte[]> ImgToBytesAsync(FileResult fileResult) {
+                if (fileResult == null)
+                    throw new ArgumentNullException(nameof(fileResult));
+
+                using (var stream = await fileResult.OpenReadAsync())
+                using (var memoryStream = new MemoryStream()) {
+                    await stream.CopyToAsync(memoryStream);
+                    return memoryStream.ToArray();
                 }
-                catch (Exception ex) {
-                    System.Diagnostics.Debug.WriteLine($"Error saving file: {ex.Message}");
-                    return null;
-                }
+            }
+
+            public static string ByteToImage(byte[] data, string extension = ".png") {
+                string tempPath = Path.Combine(FileSystem.CacheDirectory, $"{Guid.NewGuid()}{extension}");
+                File.WriteAllBytes(tempPath, data);
+                return tempPath;
             }
         }
     }

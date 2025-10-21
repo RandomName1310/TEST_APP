@@ -62,19 +62,19 @@ public partial class AccountPage : ContentPage {
 
             if (result != null) {
                 var _currentUser = UserService.UService.currentUser;
-                string path = await UserService.UService.GetUserImgPathAsync(result);
+                byte[] user_img = await UserService.UserImgService.ImgToBytesAsync(result);
 
                 var command = new SqlCommand("UPDATE Volunteer SET user_img = @image WHERE email = @email AND password = @password");
 
-                command.Parameters.AddWithValue("@image", path);
+                command.Parameters.AddWithValue("@image", user_img);
                 command.Parameters.AddWithValue("@email", _currentUser.Email);
                 command.Parameters.AddWithValue("@password", _currentUser.Password);
 
                 DatabaseConnector.ExecuteNonQuery(command);
 
                 // update user data
-                _currentUser.UserImgPath = path;
-                UserImage.Source = ImageSource.FromFile(path);
+                _currentUser.UserImg = UserService.UserImgService.ToBase64(user_img);
+                UserImage.Source = ImageSource.FromFile(result.FullPath);
                 await UserService.UService.SetCurrentUserAsync(_currentUser);
 
             }

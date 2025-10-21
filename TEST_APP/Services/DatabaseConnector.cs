@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace TEST_APP.Services {
     static class DatabaseConnector {
-        static string ip_config = "192.168.1.170";
+        static string ip_config = "192.168.1.181";
         static string connectionString = BuildConnectionString(ip_config);
 
         private static string BuildConnectionString(string ip) {

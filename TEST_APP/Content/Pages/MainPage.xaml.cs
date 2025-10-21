@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using TEST_APP.Services;
 using TEST_APP.Pages.Login;
+using System.Buffers.Text;
 
 namespace TEST_APP.Pages
 {
@@ -27,9 +28,11 @@ namespace TEST_APP.Pages
             base.OnAppearing();
             // set user image
             if (UserService.UService.currentUser != null) {
-                string user_img = UserService.UService.currentUser.UserImgPath;
+                string user_img = UserService.UService.currentUser.UserImg;
                 if (user_img != null) {
-                    UserImage.Source = ImageSource.FromFile(user_img);
+                    byte[] buffer = UserService.UserImgService.ToByteList(user_img);
+                    string path = UserService.UserImgService.ByteToImage(buffer);
+                    UserImage.Source = path;
                 }
             }
             if (!hasChosenIp)

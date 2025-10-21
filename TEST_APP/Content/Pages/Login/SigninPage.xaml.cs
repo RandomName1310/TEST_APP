@@ -1,12 +1,13 @@
-using Microsoft.Maui.Controls;
-using Microsoft.Data.SqlClient;
-using System.Diagnostics;
 using System.Data;
-using TEST_APP.Services;
+using System.Diagnostics;
+using Microsoft.Data.SqlClient;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
+using TEST_APP.Services;
 namespace TEST_APP.Pages.Login;
 
 public partial class SigninPage : ContentPage {
+    private byte[]? user_image = null;
     public SigninPage() {
         InitializeComponent();
     }
@@ -14,32 +15,15 @@ public partial class SigninPage : ContentPage {
     public async void CreateUser(object sender, EventArgs e) {
         ClickAnim(sender);
 
-        string imagePath = null;
-
-        try {
-            if (UserImage.Source is FileImageSource fileSource && File.Exists(fileSource.File)) {
-                // User selected an image — copy it to app directory
-                var result = new FileResult(fileSource.File);
-                imagePath = await UserService.UService.GetUserImgPathAsync(result);
-            }
-            else {
-                // No custom image — copy the default bundled one
-                using var stream = await FileSystem.OpenAppPackageFileAsync("user_icon.png");
-                string destPath = Path.Combine(FileSystem.AppDataDirectory, "default_user_icon.png");
-                using var destStream = File.Create(destPath);
-                await stream.CopyToAsync(destStream);
-                imagePath = destPath;
+        // be sure that user_image is populated
+        if (user_image == null) {
+            if (UserImage.Source is FileImageSource fileSource) {
+                byte[] buffer = await File.ReadAllBytesAsync(fileSource.File);
+                user_image = buffer;
             }
         }
-        catch (Exception ex) {
-            await DisplayAlert("Erro", $"Falha ao carregar imagem de perfil! ({ex.Message})", "Continuar");
-            return;
-        }
 
-        if (string.IsNullOrEmpty(imagePath) || !File.Exists(imagePath)) {
-            await DisplayAlert("Erro", "Falha ao salvar imagem de perfil!", "Continuar");
-            return;
-        }
+        string image_path = UserService.UserImgService.ToBase64(user_image);
 
         // Monta os dados do usuário
         var userData = new UserData {
@@ -47,7 +31,7 @@ public partial class SigninPage : ContentPage {
             Age = int.Parse(AgeEntry.Text),
             Email = EmailEntry.Text,
             Password = PasswordEntry.Text,
-            UserImgPath = imagePath, 
+            UserImg = image_path, 
         };
 
         await UserService.UService.SetCurrentUserAsync(userData);
@@ -61,7 +45,7 @@ public partial class SigninPage : ContentPage {
         command.Parameters.AddWithValue("@age", userData.Age);
         command.Parameters.AddWithValue("@email", userData.Email);
         command.Parameters.AddWithValue("@password", userData.Password);
-        command.Parameters.AddWithValue("@user_img", imagePath);
+        command.Parameters.AddWithValue("@user_img", user_image);
 
         DatabaseConnector.ExecuteNonQuery(command);
 
@@ -80,22 +64,12 @@ public partial class SigninPage : ContentPage {
 
             if (result != null) {
                 UserImage.Source = ImageSource.FromFile(result.FullPath);
+                user_image = await UserService.UserImgService.ImgToBytesAsync(result);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             await DisplayAlert("Erro", $"Não foi possível carregar a imagem: {ex.Message}", "OK");
         }
     }
-
-    private byte[] GetImageBytesAsync(ImageButton imageButton) {
-        if (imageButton?.Source is FileImageSource fileSource) {
-            return File.ReadAllBytes(fileSource.File);
-        }
-        else {
-            return null;
-        }
-    }
-
 
     async void ClickAnim(object sender) {
         if (sender is Button btn) {
